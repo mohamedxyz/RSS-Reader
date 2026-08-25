@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="articles">
+  {% for article in articles %}
+    <article class="article-card">
+      <h2 class="article-title">
+        <a href="{{ article[1].link }}" target="_blank" rel="noopener noreferrer">
+          {{ article[1].title }}
+        </a>
+      </h2>
+      <div class="article-meta">
+        <span class="source-badge">{{ article[0] }}</span>
+        <time>{{ article[1].published if article[1].published else article[1].updated }}</time>
+      </div>
+    </article>
+  {% else %}
+    <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No articles available right now.</p>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if page > 1 %}
+    <a href="{{ url_for('index', page=page-1) }}">← Previous</a>
+  {% endif %} 
+  
+  {% if page < total_pages %}
+    <a href="{{ url_for('index', page=page+1) }}">Next →</a>
+  {% endif %}
+</div>
+{% endblock %}

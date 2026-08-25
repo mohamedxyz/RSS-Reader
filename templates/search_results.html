@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="font-size: 1.25rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--text-muted);">
+      Search results for: <span style="color: var(--text-main); font-weight: 600;">"{{ query }}"</span>
+    </h2>
+
+    <div class="articles">
+        {% for article in articles %}
+            <article class="article-card">
+                <h2 class="article-title">
+                  <a href="{{ article[1].link }}" target="_blank" rel="noopener noreferrer">
+                    {{ article[1].title }}
+                  </a>
+                </h2>
+                <div class="article-meta">
+                    <span class="source-badge">{{ article[0] }}</span>
+                    <time>{{ article[1].published if article[1].published else article[1].updated }}</time>
+                </div>
+            </article>
+        {% else %}
+            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No matching articles found.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page is defined and page > 1 %}
+            <a href="{{ url_for('search', q=query, page=page-1) }}">← Previous</a>
+        {% endif %}
+        {% if total_pages is defined and page < total_pages %}
+            <a href="{{ url_for('search', q=query, page=page+1) }}">Next →</a>
+        {% endif %}
+    </div>
+{% endblock %}
