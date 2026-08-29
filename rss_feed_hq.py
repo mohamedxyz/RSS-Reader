@@ -9,7 +9,8 @@ app = Flask(__name__)
 RSS_FEEDS = {
     "Hacker News": "https://news.ycombinator.com/rss",
     "Reddit Machine Learning": "https://www.reddit.com/r/MachineLearning/.rss",
-    "Wall Street Tech": "https://feeds.a.dj.com/rss/RSSWSJD.xml"
+    "Wall Street Tech": "https://feeds.a.dj.com/rss/RSSWSJD.xml",
+    "Reddit muslim Ventures": "https://www.reddit.com/r/MuslimVentures/",
 }
 
 # Custom User-Agent to bypass 403 Forbidden blocks
